@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-229647930-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-229647930-1');
+</script>
+	
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Weather Data in Excel</title>
+	<link rel="stylesheet" href="{{url_for('static', filename='bootstrap.min.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='lost.css')}}" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"
+</head>
+
+<body>
+	<main>
+<!-- Main Header -->
+	<h1>Upload Excel File and get weather data</h1>
+
+
+	<p>There are few rules for uploading an Excel file.<br>1. The file needs to have these extensions -> ('XLSX', xlsx', 'xls', 'XLS')<br>2. The file needs to have 3 sheets.<br>3. Sheet 1 and Sheet 2 of the excel workbook needs to have a valid city name at location A1.<br> If these condition are met you can download an excel file with weather data of the given cities and charts.<br>Thank you for using this website.</p>
+<!-- Upload Form -->
+	<center>
+	<form method='POST' enctype='multipart/form-data'>
+		{{ form.hidden_tag() }}
+		{{ form.file() }}
+		{{ form.submit() }}
+	</form>
+<br>
+<br>
+<br>	
+		<!-- Download Button -->
+	{% if file_uploaded %}
+		<h4>Your Excel file with weather data is ready</h4>
+			<a href = "{{ url_for('download_file') }}"> <input type="submit" class="btn btn-primary rounded-0" value="Download"> </a>
+	{% endif %}
+</center>
+</main>
+	<!-- Footer -->
+<footer class="fixed_footer">
+  <div class="content">
+    <center>
+    <p>Sparsh Shrestha - BTA 1016 Assignment 5</p>
+    </center>
+  </div>
+</footer>
+	
+</body>
+
+</html>
